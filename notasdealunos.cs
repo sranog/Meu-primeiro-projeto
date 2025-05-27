@@ -18,24 +18,27 @@ class Program
 	{
 		Aluno[] turma = new Aluno[]
 		{
-			new Aluno("Sara", new int[] {100, 89, 95, 80, 87, 95, 88, 100}),
-			new Aluno("Lucas", new int[] {75, 82, 90, 88}),
-			new Aluno("Mariana", new int[] {60, 70, 65, 72, 68}),
-			new Aluno("João", new int[] {95, 93, 90, 98, 97, 92}),
-			new Aluno("Ana", new int[] {55, 60, 58}),
-			new Aluno("Pedro", new int[] {85, 88, 84, 87, 86, 89, 90}),
-			new Aluno("Camila", new int[] {78, 80, 76}),
-			new Aluno("Rafael", new int[] {100, 100, 100, 100}),
-			new Aluno("Beatriz", new int[] {45, 50, 48, 52, 47, 49, 46}),
-			new Aluno("Carlos", new int[] {67, 72, 70}),
-			new Aluno("Letícia", new int[] {90, 85, 88, 92, 87, 89, 91, 86, 90, 93})
+			new Aluno("Ana Clara", new int[] {98, 97, 99, 96, 97}),
+			new Aluno("Bruno Silva", new int[] {90, 92, 91, 93, 92, 85}),
+			new Aluno("Camila Souza", new int[] {89, 88, 90, 87, 88, 95}),
+			new Aluno("Diego Alves", new int[] {85, 87, 86, 84, 85, 90}),
+			new Aluno("Eduarda Lima", new int[] {80, 82, 81, 83, 79, 80}),
+			new Aluno("Felipe Santos", new int[] {78, 79, 77, 80, 76, 50}),
+			new Aluno("Gabriela Ferreira", new int[] {74, 75, 76, 73, 72, 60}),
+			new Aluno("Hugo Martins", new int[] {70, 72, 71, 69, 73, 40}),
+			new Aluno("Isabela Costa", new int[] {68, 69, 67, 70, 66, 20}),
+			new Aluno("João Pedro", new int[] {65, 67, 66, 64, 63, 30}),
+			new Aluno("Karen Oliveira", new int[] {62, 63, 64, 61, 60, 50}),
+			new Aluno("Lucas Ribeiro", new int[] {59, 60, 61, 58, 57, 60}),
+			new Aluno("Mariana Almeida", new int[] {40, 45, 50, 55, 35, 100, 90})
 		};
 
-		Console.WriteLine("Aluno\t\tMédia\tConceito\n");
+		Console.WriteLine("Aluno\t\tMédia\tNota final\tConceito\t Média(ponto extra)");
 
 		foreach (Aluno aluno in turma)
 		{
 			int total = 0;
+			decimal notasExtras = 0m;
 			int provasObrigatorias = 5;
 
 			for (int i = 0; i < aluno.Notas.Length; i++)
@@ -43,10 +46,11 @@ class Program
 				if (i < provasObrigatorias)
 					total += aluno.Notas[i];
 				else
-					total += aluno.Notas[i] / 10; // notas extras valem menos
+					notasExtras += (decimal)aluno.Notas[i] / 10; // notas extras valem menos
 			}
 
 			int media = total / provasObrigatorias;
+			decimal notasFinal = media + (decimal)notasExtras;
 			string conceito = "";
 
 			if (media >= 97)
@@ -76,7 +80,7 @@ class Program
 			else
 				conceito = "F";
 
-			Console.WriteLine($"{aluno.Nome}\t\t{media}\t{conceito}");
+			Console.WriteLine($@"{aluno.Nome}\t\t{media}\t\t\t{notasFinal}\t{conceito}\t{media}({notasExtras})");
 		}
 
 		Console.ReadLine();
